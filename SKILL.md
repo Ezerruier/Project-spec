@@ -309,7 +309,6 @@ data/raw/
 *.cnt
 *.dcm
 *.nii
-*.nii7
 *.nii.gz
 
 # 工具生成目录
