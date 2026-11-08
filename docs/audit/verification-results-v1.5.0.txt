@@ -1,0 +1,9 @@
+{"static": "PASS", "markdown_files": 8, "local_links": 45, "head_commit": "e4222a610dac8c07cdb4cffe8f11d1525416465a", "base_ancestor_checked": "e4222a610dac8c07cdb4cffe8f11d1525416465a", "staged_changes": 0, "actual_gitignore_files": 0}
+{"git_fixture": "PASS", "legacy_false_exclusions": 4, "narrow_rules_retained": 5, "narrow_rules_ignored": 4, "tracked_file_retained": true, "original_staged_diff_unchanged_by_read_only_checks": true}
+{"core_bytes_before": 22841, "core_bytes_after": 10109, "core_reduction_percent": 55.7, "skill_sha256": "37d9a437eae95351cea306d39a32d7eb7a0ebacd98d17ad2d4ad6cb3e73508a3"}
+
+Additional real tests in isolated temporary repositories (Linux):
+new descendant commit: PASS; original baseline ancestor checked
+ZIP copy inside another repository: PASS; parent Git state excluded
+depth-1 shallow clone without baseline object: PASS; ancestry explicitly unverified
+These synthetic fixture commits are not the GitHub publication commit.
