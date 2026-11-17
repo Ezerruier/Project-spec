@@ -1,0 +1,40 @@
+project-spec v1.6.0 verification results
+Generated: 2026-11-17
+Environment: Windows, Python 3.13.18, Git for Windows
+
+[1] Python syntax
+command: python -m py_compile scripts/check_text_health.py scripts/verify_upgrade.py
+result: PASS
+
+[2] Text health, project-spec itself
+command: python scripts/check_text_health.py . --gitignore --strict
+result:
+checked=14 errors=0 warnings=0
+
+[3] Snapshot verification
+command: python scripts/verify_upgrade.py .
+result:
+{"static": "PASS", "markdown_files": 10, "local_links": 52, "head_commit": "6215d335f266ec8d3a343331d4f3bf6f0a4f36b9", "base_ancestor_checked": "e4222a610dac8c07cdb4cffe8f11d1525416465a", "staged_changes": 0, "actual_gitignore_files": 0}
+{"git_fixture": "PASS", "legacy_false_exclusions": 4, "narrow_rules_retained": 5, "narrow_rules_ignored": 4, "tracked_file_retained": true, "original_staged_diff_unchanged_by_read_only_checks": true}
+{"core_bytes_before": 22841, "core_bytes_after": 11415, "core_reduction_percent": 50.0, "skill_sha256": "4031408ebc1e003f55a6a63f5ba408844aee74260143dfb8f119f5892db586f0"}
+
+[4] Real .gitignore read-only copy
+source: D:\ProgramData\Research\MRI-Analysis\.gitignore (original not modified)
+copy: C:\Users\SSS\Doubao\chats\2026-11-17\new-chat\_tmp_mri_gitignore\.gitignore
+command: python scripts/check_text_health.py <copy> --gitignore
+result:
+[ERROR] .gitignore:35 UTF8: 严格 UTF-8 解码失败：字节偏移 514（行 35），invalid continuation byte
+[WARNING] .gitignore CRLF: 检测到 46 处 CRLF；项目默认 LF（.ps1/.bat/.cmd 可保留 CRLF）
+[WARNING] .gitignore:8 GITIGNORE-RED: `logs/`：全局忽略 logs/ 可能隐藏必要执行证据；改为具体运行目录或按用途保留
+[WARNING] .gitignore:9 GITIGNORE-RED: `*.log`：全局忽略 *.log 可能排除必要运行/审计日志；改为窄路径或按用途保留
+[WARNING] .gitignore:39 GITIGNORE-RED: `archive/`：全局忽略 archive/ 可能隐藏需要保留的历史证据；改为具体子目录
+checked=1 errors=1 warnings=4
+
+[5] --git mode, original repository read-only
+command: python scripts/check_text_health.py "D:\ProgramData\Research\MRI-Analysis\.gitignore" --gitignore --git
+result: git executed successfully; no tracked files currently matched the red-line patterns on this run; no files modified.
+
+[6] prompt-coach text health
+command: python scripts/check_text_health.py <prompt-coach install dir>
+result:
+checked=7 errors=0 warnings=0

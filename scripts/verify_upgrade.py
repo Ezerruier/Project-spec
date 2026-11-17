@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Name: verify_upgrade.py
-# Description: Verify the v1.5.0 snapshot read-only; write isolated Git fixtures only.
+# Description: Verify the current project-spec snapshot read-only; write isolated Git fixtures only.
 # Author: Codex
-# Version: 1.0.0
-# Update: 2026-11-08
+# Version: 1.1.0
+# Update: 2026-11-17
 # Usage: python3 scripts/verify_upgrade.py PATH_TO_SKILL
 import hashlib
 import json
@@ -34,7 +34,7 @@ for path in files:
     assert not data.startswith(b'\xef\xbb\xbf') and b'\r' not in data, path
     content = data.decode('utf-8')
     assert re.search(r'^> 版本: v\d+\.\d+\.\d+', content, re.M), path
-    assert '> 更新日期: 2026-11-08' in content, path
+    assert re.search(r'^> 更新日期: \d{4}-\d{2}-\d{2}', content, re.M), path
     assert '| 版本 | 日期 | 修改说明 | 作者 |' in content, path
     opened = None
     for line in content.splitlines():
@@ -57,6 +57,7 @@ for path in files:
         assert not whitespace.stdout and not whitespace.stderr, (path, whitespace.stdout, whitespace.stderr)
 assert files and 'name: project-spec\n' in (root / 'SKILL.md').read_text(encoding='utf-8')
 assert (root / 'SKILL.md').read_text(encoding='utf-8').startswith('---\n')
+assert (root / 'scripts/check_text_health.py').is_file()
 head = None
 base_available = False
 if has_git:
